@@ -24,16 +24,15 @@ class MyLocationListener implements LocationListener {
 
     @Override
     public void onLocationChanged(Location loc) {
-//        if (player == null) {
             player.position(new LatLng(loc.getLatitude(), loc.getLongitude()));
             mMap.clear();
             mMap.addMarker(player);
-            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(player.getPosition(), 20));
-            //mMap.moveCamera(CameraUpdateFactory.newLatLng(player));
-//        } else {
-//            player = new LatLng(loc.getLatitude(), loc.getLongitude());
-//            mMap.moveCamera(CameraUpdateFactory.newLatLng(player));
-//        }
+            mMap.moveCamera(
+                CameraUpdateFactory.newLatLngZoom(
+                    player.getPosition(),
+                    mMap.getCameraPosition().zoom
+                )
+            );
     }
 
     @Override
